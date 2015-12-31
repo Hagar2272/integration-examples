@@ -4,7 +4,7 @@
  * and asks AWS for new credentials before those expire.
  */
 $(function() {
-    var bucketUrl = "https://fineuploader-s3-client-demo-uploads.s3.amazonaws.com",
+    var bucketUrl = "https://hagar-s3-fileuploader.s3.amazonaws.com",
         updateCredentials = function(error, data) {
             if (!error) {
                 $('#uploader').fineUploaderS3("setCredentials", s3DemoGlobals.getFuCredentials(data));
@@ -15,6 +15,7 @@ $(function() {
         };
 
     $("#uploader").fineUploaderS3({
+        //debug: true,
         request: {
             endpoint: bucketUrl
         },
@@ -30,6 +31,11 @@ $(function() {
                 return qq.format("{}/{}.{}", s3DemoGlobals.userName, uuid, qq.getExtension(filename));
             }
         },
+        deleteFile: {
+            enabled: true,
+            forceConfirm: true,
+            //endpoint: 'server/file'
+        },
         chunking: {
             enabled: true
         },
@@ -38,8 +44,8 @@ $(function() {
         },
         // Restrict files to 15 MB and 5 net files per session
         validation: {
-            itemLimit: 5,
-            sizeLimit: 15000000
+            itemLimit: 50,
+            sizeLimit: 1073741824 // 1 GB = 1024*1024*1024
         },
         thumbnails: {
             placeholders: {
