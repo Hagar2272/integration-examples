@@ -4,7 +4,7 @@
 $(function() {
         // Called when the SDK is loaded & ready
     var onAmazonLoginReady = function() {
-            amazon.Login.setClientId("amzn1.application-oa2-client.86174d2cae1d4fe9950b7f31f4d1e3aa");
+            amazon.Login.setClientId("amzn1.application-oa2-client.af1adfccf7b54feaad1d38402f4758be");
         },
 
         sdkScriptEl = document.createElement('script');
@@ -42,7 +42,7 @@ $(function() {
                     // Grab S3 credentials using the bearer token
                     s3DemoGlobals.assumeRoleWithWebIdentity({
                         idToken: authResult.access_token,
-                        roleArn: "arn:aws:iam::776099607611:role/demo-s3-noserver-amazon",
+                        roleArn: "arn:aws:iam::725191327551:role/s3-upload-amazon",
                         providerId: "www.amazon.com"
                     });
 
